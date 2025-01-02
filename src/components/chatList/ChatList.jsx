@@ -24,7 +24,7 @@ const ChatList = () => {
       </div>
       <hr />
       <div className="upgrade">
-        <img src="logo.png" alt="logo.png" />
+        <img src="/logo.png" alt="logo.png" />
         <div className="texts">
           <span>Upgrade to Neo AI Pro</span>
           <span>Get unlimited access to all features</span>
