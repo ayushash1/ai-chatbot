@@ -8,7 +8,7 @@ const ChatList = () => {
       <Link to={"/"}>Explore</Link>
       <Link to={"/"}>Contact</Link>
       <hr />
-      <dpan className="title">Recent Chats</dpan>
+      <span className="title">Recent Chats</span>
       <div className="list">
         <Link to={"/"}>chat title</Link>
         <Link to={"/"}>chat title</Link>
