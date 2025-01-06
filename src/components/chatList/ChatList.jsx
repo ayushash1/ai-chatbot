@@ -1,6 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import "./chatList.css";
 import { Link } from "react-router";
 const ChatList = () => {
+  const backendurl = import.meta.env.VITE_API_URL;
+  const { isPending, error, data } = useQuery({
+    queryKey: ["userChats"],
+    queryFn: () =>
+      fetch(`${backendurl}/api/userchats`, {
+        credentials: "include",
+      }).then((res) => res.json()),
+  });
+
   return (
     <div className="chatList">
       <span className="title">DashBoard</span>
@@ -10,17 +20,17 @@ const ChatList = () => {
       <hr />
       <span className="title">Recent Chats</span>
       <div className="list">
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
-        <Link to={"/"}>chat title</Link>
+        {isPending
+          ? "Loading..."
+          : error
+          ? `Error: Something went wrong!`
+          : Array.isArray(data) && data.length > 0
+          ? data.map((chat) => (
+              <Link to={`dashboard/chats/${chat._id}`} key={chat._id}>
+                {chat.title || "Untitled Chat"}
+              </Link>
+            ))
+          : "No chats found."}
       </div>
       <hr />
       <div className="upgrade">

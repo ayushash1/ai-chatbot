@@ -63,7 +63,6 @@ const NewPromt = () => {
     if (!text) {
       return;
     }
-
     add(text);
   };
 
